@@ -1,0 +1,53 @@
+version: '2.1'
+
+services:
+    postgresql:
+        restart: always
+        image: mdillon/postgis
+        volumes:
+            - psql-vol:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        environment:
+            #- PGDATA:/var/lib/postgresql/pgsql/data
+            - POSTGRES_USER=${POSTGRES_USER:-tendenci-usr}
+            - POSTGRES_DB=${POSTGRES_DB:-tendenci}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-mycomplexpassword}
+        healthcheck:
+            test: ["CMD", "pg_isready", "-h", "localhost", "-p", "5432"]
+            interval: 20s
+            timeout: 5s
+            retries: 5
+
+
+    tendenci:
+        restart: always
+        image: tendenci:latest
+        depends_on: 
+            postgresql:
+                condition: service_healthy
+        volumes:
+            - logs-vol:/var/log/tendenci
+            - root-vol:/home/tendenci/install/tendenci
+
+        ports:
+            - 6080:8000
+        environment:
+            # Postgresql setup
+            - DB_USER=${POSTGRES_USER:-tendenci-usr}
+            - DB_NAME=${POSTGRES_DB:-tendenci}
+            - DB_PASS=${POSTGRES_PASSWORD:-mycomplexpassword}
+            - DB_HOST=${DB_HOST:-postgresql}
+            - DB_PORT=${DB_PORT:-5432} 
+
+            # Superuser setup
+            - ADMIN_USER=${ADMIN_USER:-admin}
+            - ADMIN_MAIL=${ADMIN_MAIL:-admin@example.com}
+            - ADMIN_PASS=${ADMIN_PASS:-password}
+            - SITE_URL=${SITE_URL:-HTTP://myurl.com}
+            - TIME_ZONE=${TIME_ZONE:-GMT+0}
+
+volumes:
+    root-vol:
+    logs-vol:
+    psql-vol:
