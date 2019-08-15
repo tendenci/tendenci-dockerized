@@ -1,3 +1,18 @@
+# Important
+
+Even if this docker image is available, I would **not recommend using tendenci** for your association. There are many reason for this
+
+- It will take still a considerable amount of time to set up the basics
+- The software base is huge and there are few maintainers (one)
+- It is bloated with many functions that are not relevant anymore (google+)
+- It is [not gdpr compliant](https://github.com/tendenci/tendenci/issues/777  "not gdpr compliant")
+- See also [this letter](https://github.com/goetzk/tendenci-community/blob/master/community-engagement.rst "this letter")
+
+You can try it on your own. Or you can look at better association managers:
+
+- http://hitobito.com/en
+- https://www.admidio.org/download.php?language=en
+
 # Docker Tendenci
 
 Docker file and docker-compose file to launch a tendenci instance.
@@ -31,3 +46,4 @@ Based on : https://github.com/frenchbeard/docker-tendenci
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
