@@ -1,4 +1,6 @@
 
+*This repo is transferred from @jucajuca*.
+
 # Docker Tendenci
 
 Docker file and docker-compose file to launch a tendenci instance.
