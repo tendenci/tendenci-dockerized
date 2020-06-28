@@ -1,15 +1,14 @@
-FROM ubuntu:18.10
-MAINTAINER juca <juca@juan-carlos.info>
+FROM ubuntu:18.04
+MAINTAINER Tendenci <programmers@tendenci.com>
 
-ENV APP_NAME="tendenci" \
+ENV APP_NAME="mysite" \
     TENDENCI_USER="tendenci" \
     TENDENCI_HOME="/home/tendenci" \
-    TENDENCI_LOG_DIR="/var/log/tendenci" \
+    TENDENCI_LOG_DIR="/var/log/mysite" \
     TENDENCI_INSTALL_DIR="/home/tendenci/install" \
-    TENDENCI_STATIC_DIR="/home/tendenci/static" \
-    TENDENCI_PROJECT_ROOT="/home/tendenci/install/tendenci"
+    TENDENCI_PROJECT_ROOT="/home/tendenci/install/mysite"
 
-RUN mkdir "$TENDENCI_HOME" "$TENDENCI_LOG_DIR" "$TENDENCI_INSTALL_DIR" "$TENDENCI_STATIC_DIR" 
+RUN mkdir "$TENDENCI_HOME" "$TENDENCI_LOG_DIR" "$TENDENCI_INSTALL_DIR"
 
 RUN    DEBIAN_FRONTEND=noninteractive apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-utils \

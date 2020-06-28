@@ -27,8 +27,8 @@ services:
             postgresql:
                 condition: service_healthy
         volumes:
-            - logs-vol:/var/log/tendenci
-            - root-vol:/home/tendenci/install/tendenci
+            - logs-vol:/var/log/mysite
+            - root-vol:/home/tendenci/install/mysite
 
         ports:
             - 6080:8000

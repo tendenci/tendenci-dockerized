@@ -67,8 +67,8 @@ function initial_setup
     cd "$TENDENCI_PROJECT_ROOT"
     
     "$PYTHON" manage.py initial_migrate 
-    "$PYTHON" manage.py deploy 
-    "$PYTHON" manage.py load_tendenci2018_defaults 
+    "$PYTHON" manage.py deploy
+    "$PYTHON" manage.py load_tendenci_defaults
     "$PYTHON" manage.py update_dashboard_stats
     "$PYTHON" manage.py set_setting site global siteurl "$SITE_URL" 	
 

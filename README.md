@@ -1,5 +1,5 @@
 
-*This repo is transferred from @jucajuca*.
+*This repo was originally transferred from @jucajuca. Thanks @jucajuca!*.
 
 # Docker Tendenci
 
@@ -11,7 +11,7 @@ Docker file and docker-compose file to launch a tendenci instance.
 Install docker and git in your system
 
 ```bash
-git clone https://github.com/jucajuca/docker-tendenci
+git clone https://github.com/tendenci/tendenci12-dockerized.git
 ``````
 
 ## Usage
@@ -20,7 +20,7 @@ Rename the .env.sample file to .env
 Edit the .env file and adjust your settings
 
 ```bash
-docker build -t "Tendenci" .
+docker build --no-cache=true --rm -t tendenci .
 docker-compose up -d
 ``````
 
