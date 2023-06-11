@@ -91,8 +91,6 @@ if [ ! -f "$TENDENCI_PROJECT_ROOT/conf/first_run" ]; then
     create_settings
     initial_setup
     run "$@"
-fi
-
-if [ -f "$TENDENCI_PROJECT_ROOT/conf/first_run" ]; then
+else
     run "$@"
 fi

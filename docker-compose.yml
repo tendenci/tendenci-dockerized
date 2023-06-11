@@ -3,18 +3,19 @@ version: '2.1'
 services:
     postgresql:
         restart: always
-        image: mdillon/postgis
+        image: postgis/postgis:latest
         volumes:
             - psql-vol:/var/lib/postgresql/data
+            - ./assets/build/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
         ports:
             - 5432:5432
         environment:
-            #- PGDATA:/var/lib/postgresql/pgsql/data
-            - POSTGRES_USER=${POSTGRES_USER:-tendenci-usr}
-            - POSTGRES_DB=${POSTGRES_DB:-tendenci}
-            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-mycomplexpassword}
+            - TENDENCI_USER=${POSTGRES_USER:-tendenci-usr}
+            - TENDENCI_DB=${POSTGRES_DB:-tendenci}
+            - TENDENCI_PASS=${POSTGRES_PASSWORD:-mycomplexpassword}
+            - POSTGRES_PASSWORD=${POSTGRES_SUPERUSER_PASSWORD:-mycomplexpassword}
         healthcheck:
-            test: ["CMD", "pg_isready", "-h", "localhost", "-p", "5432"]
+            test: ["CMD", "pg_isready", "-h", "localhost", "-d", "${POSTGRES_DB:-tendenci}", "-U", "${POSTGRES_USER:-tendenci-usr}", "-p", "5432"]
             interval: 20s
             timeout: 5s
             retries: 5
