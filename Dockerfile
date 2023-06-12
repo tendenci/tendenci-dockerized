@@ -1,5 +1,5 @@
-FROM ubuntu:20.04
-MAINTAINER Tendenci <programmers@tendenci.com>
+FROM ubuntu:22.04
+LABEL authors="Tendenci <programmers@tendenci.com>"
 
 ENV APP_NAME="mysite" \
     TENDENCI_USER="tendenci" \
@@ -18,7 +18,8 @@ RUN    DEBIAN_FRONTEND=noninteractive apt-get update -y \
         python3 python3-dev python3-pip  \
         libevent-dev libpq-dev \
         libjpeg8 libjpeg-dev \
-	libfreetype6 libfreetype6-dev git  \
+	    libfreetype6 libfreetype6-dev git \
+        cron libmagic-dev \
     && DEBIAN_FRONTEND=noninteractive apt-get clean \
     && DEBIAN_FRONTEND=noninteractive apt-get update 
 
